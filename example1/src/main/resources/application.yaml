@@ -2,9 +2,11 @@ spring:
   datasource:
     driver-class-name:
     hikari:
+      # how pool size affects rest requests?
+      # how to fix latency of our service without increasing the pool size?
       maximum-pool-size: 1
       minimum-idle: 1
-      connection-timeout: 30000
+      connection-timeout: 300 # what is the effect of this?
       auto-commit: false
     username: ${DB_USER}
     password: ${DB_PASSWORD}

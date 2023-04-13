@@ -5,7 +5,7 @@ import lombok.Builder;
 @Builder
 public record AuthorDetails(
         String name,
-        int bookCount
-//        int uniqueCoAuthorsCount,
+        int bookCount,
+        int uniqueCoAuthorsCount
 ) {
 }

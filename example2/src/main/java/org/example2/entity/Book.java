@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.util.Set;
 
+// Lombok @Data leads to a overflow error in {@link AuthorService#getAuthorDetailsV1(Long)}
+// Why and how to fix?
 @Data
 @Entity(name = "books")
 public class Book {

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -20,7 +21,11 @@ public class AuthorService {
     public AuthorDetails getAuthorDetailsV1(Long id) {
         var author = authorRepository.findById(id).orElseThrow();
         var bookCount = author.getBooks().size();
-        return new AuthorDetails(author.getName(), bookCount);
+        var coautors = author.getBooks().stream()
+                .flatMap(b -> b.getAuthors().stream())
+                .collect(Collectors.toSet())
+                .size();
+        return new AuthorDetails(author.getName(), bookCount, coautors);
     }
 
     @Transactional
